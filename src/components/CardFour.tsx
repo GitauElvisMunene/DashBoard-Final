@@ -25,7 +25,7 @@ const CardFour = () => {
         </svg>
       </div>
 
-      <div className="mt-4 flex items-end justify-between">
+<div className="mt-4 flex items-end justify-between">
         <div>
           <h4 className="text-title-md font-bold text-black dark:text-white">
             3.456
@@ -50,7 +50,7 @@ const CardFour = () => {
           </svg>
         </span>
       </div>
-    </div>
+    </div>      
   );
 };
 
