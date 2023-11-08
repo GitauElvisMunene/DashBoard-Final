@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import UserOne from '../images/user/user-01.png';
-import UserTwo from '../images/user/user-02.png';
+import UserOne from '../images/user/DSC_4346a.jpg';
+import UserTwo from '../images/user/Sheila-passport.jpg';
 import UserThree from '../images/user/user-03.png';
 import UserFour from '../images/user/user-04.png';
 
@@ -102,9 +102,9 @@ const DropdownMessage = () => {
 
               <div>
                 <h6 className="text-sm font-medium text-black dark:text-white">
-                  Mariya Desoja
+                  Maya Wanjiku
                 </h6>
-                <p className="text-sm">I like your confidence 💪</p>
+                <p className="text-sm">Hey Albert i just figured out that my Smart Water Managment System is faulty, is yours working properly?</p>
                 <p className="text-xs">2min ago</p>
               </div>
             </Link>
@@ -120,15 +120,15 @@ const DropdownMessage = () => {
 
               <div>
                 <h6 className="text-sm font-medium text-black dark:text-white">
-                  Robert Jhon
+                  David Karanja
                 </h6>
-                <p className="text-sm">Can you share your offer?</p>
+                <p className="text-sm">Hey albert could you help me setup SWMS?</p>
                 <p className="text-xs">10min ago</p>
               </div>
             </Link>
           </li>
           <li>
-            <Link
+            {/* <Link
               className="flex gap-4.5 border-t border-stroke px-4.5 py-3 hover:bg-gray-2 dark:border-strokedark dark:hover:bg-meta-4"
               to="/messages"
             >
@@ -179,7 +179,7 @@ const DropdownMessage = () => {
                 <p className="text-sm">I like your confidence 💪</p>
                 <p className="text-xs">2min ago</p>
               </div>
-            </Link>
+            </Link> */}
           </li>
         </ul>
       </div>

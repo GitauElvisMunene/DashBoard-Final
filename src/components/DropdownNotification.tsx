@@ -79,10 +79,9 @@ const DropdownNotification = () => {
             >
               <p className="text-sm">
                 <span className="text-black dark:text-white">
-                  Edit your information in a swipe
+                  You might need to check on the water pipe in room 1
                 </span>{' '}
-                Sint occaecat cupidatat non proident, sunt in culpa qui officia
-                deserunt mollit anim.
+                There is a detection in lekage kindly check it out.
               </p>
 
               <p className="text-xs">12 May, 2025</p>
@@ -95,9 +94,9 @@ const DropdownNotification = () => {
             >
               <p className="text-sm">
                 <span className="text-black dark:text-white">
-                  It is a long established fact
+                  Check on your water usage.
                 </span>{' '}
-                that a reader will be distracted by the readable.
+                Your water usage for this month is very alarming.
               </p>
 
               <p className="text-xs">24 Feb, 2025</p>
@@ -110,10 +109,9 @@ const DropdownNotification = () => {
             >
               <p className="text-sm">
                 <span className="text-black dark:text-white">
-                  There are many variations
+                  Your monthly water taget.
                 </span>{' '}
-                of passages of Lorem Ipsum available, but the majority have
-                suffered
+                This month you forgot to set your monthly water consumption goals.
               </p>
 
               <p className="text-xs">04 Jan, 2025</p>

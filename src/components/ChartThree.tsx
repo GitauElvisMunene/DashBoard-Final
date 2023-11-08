@@ -11,7 +11,7 @@ const options: ApexOptions = {
     type: 'donut',
   },
   colors: ['#10B981', '#375E83', '#259AE6', '#FFA70B'],
-  labels: ['Remote', 'Hybrid', 'Onsite', 'Leave'],
+  labels: ['site 1', 'site 2', 'site 3', 'site 4'],
   legend: {
     show: true,
     position: 'bottom',
