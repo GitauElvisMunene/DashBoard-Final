@@ -14,7 +14,9 @@
     "url": "https://tailadmin.com"
   },
   "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.454.0",
     "apexcharts": "^3.41.0",
+    "aws-sdk": "^2.1499.0",
     "headlessui": "^0.0.0",
     "jsvectormap": "^1.5.3",
     "match-sorter": "^6.3.1",

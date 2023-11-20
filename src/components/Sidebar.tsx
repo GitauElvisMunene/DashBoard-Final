@@ -276,7 +276,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             : setSidebarExpanded(true);
                         }}
                       >
-                        <svg
+                        {/* <svg
                           className="fill-current"
                           width="18"
                           height="18"
@@ -304,9 +304,9 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             d="M16.875 16.1156H1.77187C1.43438 16.1156 1.125 16.3969 1.125 16.7625C1.125 17.1281 1.40625 17.4094 1.77187 17.4094H16.875C17.2125 17.4094 17.5219 17.1281 17.5219 16.7625C17.5219 16.3969 17.2125 16.1156 16.875 16.1156Z"
                             fill="white"
                           />
-                        </svg>
-                        Forms
-                        <svg
+                        </svg> */}
+                        
+                        {/* <svg
                           className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current ${
                             open && 'rotate-180'
                           }`}
@@ -322,7 +322,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             d="M4.41107 6.9107C4.73651 6.58527 5.26414 6.58527 5.58958 6.9107L10.0003 11.3214L14.4111 6.91071C14.7365 6.58527 15.2641 6.58527 15.5896 6.91071C15.915 7.23614 15.915 7.76378 15.5896 8.08922L10.5896 13.0892C10.2641 13.4147 9.73651 13.4147 9.41107 13.0892L4.41107 8.08922C4.08563 7.76378 4.08563 7.23614 4.41107 6.9107Z"
                             fill=""
                           />
-                        </svg>
+                        </svg> */}
                       </NavLink>
                       {/* <!-- Dropdown Menu Start --> */}
                       <div
@@ -339,7 +339,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                                 (isActive && '!text-white')
                               }
                             >
-                              Form Elements
+                            
                             </NavLink>
                           </li>
                           <li>
@@ -350,7 +350,6 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                                 (isActive && '!text-white')
                               }
                             >
-                              Form Layout
                             </NavLink>
                           </li>
                         </ul>
@@ -365,12 +364,12 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
               {/* <!-- Menu Item Tables --> */}
               <li>
                 <NavLink
-                  to="/tables"
+                  to="/"
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
                     pathname.includes('tables') && 'bg-graydark dark:bg-meta-4'
                   }`}
                 >
-                  <svg
+                  {/* <svg
                     className="fill-current"
                     width="18"
                     height="19"
@@ -394,14 +393,15 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                         />
                       </clipPath>
                     </defs>
-                  </svg>
-                  Tables
+                  </svg> */}
+                  
                 </NavLink>
               </li>
               {/* <!-- Menu Item Tables --> */}
 
               {/* <!-- Menu Item Settings --> */}
               <li>
+                Recommendations
                 <NavLink
                   to="/settings"
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
@@ -409,7 +409,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     'bg-graydark dark:bg-meta-4'
                   }`}
                 >
-                  <svg
+                 <img src="../images/icon/new-rec.jpg" alt="" />
+                  {/* <svg
                     className="fill-current"
                     width="18"
                     height="19"
@@ -437,8 +438,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                         />
                       </clipPath>
                     </defs>
-                  </svg>
-                  Settings
+                  </svg> */}
+                  Tips
                 </NavLink>
               </li>
               {/* <!-- Menu Item Settings --> */}
@@ -489,7 +490,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                       </clipPath>
                     </defs>
                   </svg>
-                  Chart
+                  Water usage trend
                 </NavLink>
               </li>
               {/* <!-- Menu Item Chart --> */}
@@ -514,7 +515,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             : setSidebarExpanded(true);
                         }}
                       >
-                        <svg
+                        {/* <svg
                           className="fill-current"
                           width="18"
                           height="19"
@@ -547,8 +548,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             </clipPath>
                           </defs>
                         </svg>
-                        UI Elements
-                        <svg
+                         */}
+                        {/* <svg
                           className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current ${
                             open && 'rotate-180'
                           }`}
@@ -564,7 +565,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             d="M4.41107 6.9107C4.73651 6.58527 5.26414 6.58527 5.58958 6.9107L10.0003 11.3214L14.4111 6.91071C14.7365 6.58527 15.2641 6.58527 15.5896 6.91071C15.915 7.23614 15.915 7.76378 15.5896 8.08922L10.5896 13.0892C10.2641 13.4147 9.73651 13.4147 9.41107 13.0892L4.41107 8.08922C4.08563 7.76378 4.08563 7.23614 4.41107 6.9107Z"
                             fill=""
                           />
-                        </svg>
+                        </svg> */}
                       </NavLink>
                       {/* <!-- Dropdown Menu Start --> */}
                       <div
@@ -581,7 +582,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                                 (isActive && '!text-white')
                               }
                             >
-                              Alerts
+                      
                             </NavLink>
                           </li>
                           <li>
@@ -592,7 +593,6 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                                 (isActive && '!text-white')
                               }
                             >
-                              Buttons
                             </NavLink>
                           </li>
                         </ul>

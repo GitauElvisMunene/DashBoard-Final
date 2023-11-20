@@ -84,18 +84,18 @@ const options: ApexOptions = {
   xaxis: {
     type: 'category',
     categories: [
-      'Sep',
-      'Oct',
-      'Nov',
-      'Dec',
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
+      '2',
+      '4',
+      '6',
+      '8',
+      '10',
+      '12',
+      '14',
+      '16',
+      '18',
+      '20',
+      '22',
+      '24',
     ],
     axisBorder: {
       show: false,
@@ -127,7 +127,8 @@ const ChartOne: React.FC = () => {
     series: [
       {
         name: 'Product One',
-        data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30, 45],
+        // data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30, 45],
+        data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       },
 
       {
@@ -142,12 +143,12 @@ const ChartOne: React.FC = () => {
       <div className="flex flex-wrap items-start justify-between gap-3 sm:flex-nowrap">
         <div className="flex w-full flex-wrap gap-3 sm:gap-5">
           <div className="flex min-w-47.5">
-            <span className="mt-1 mr-2 flex h-4 w-full max-w-4 items-center justify-center rounded-full border border-primary">
+            {/* <span className="mt-1 mr-2 flex h-4 w-full max-w-4 items-center justify-center rounded-full border border-primary">
               <span className="block h-2.5 w-full max-w-2.5 rounded-full bg-primary"></span>
-            </span>
+            </span> */}
             <div className="w-full">
-              <p className="font-semibold text-primary">Flow Rate</p>
-              <p className="text-sm font-medium">12.04.2022 - 12.05.2022</p>
+              {/* <p className="font-semibold text-primary">Flow Rate</p> */}
+              {/* <p className="text-sm font-medium">12.04.2022 - 12.05.2022</p> */}
             </div>
           </div>
           <div className="flex min-w-47.5">
@@ -155,8 +156,8 @@ const ChartOne: React.FC = () => {
               <span className="block h-2.5 w-full max-w-2.5 rounded-full bg-secondary"></span>
             </span>
             <div className="w-full">
-              <p className="font-semibold text-secondary">Usage Trends</p>
-              <p className="text-sm font-medium">12.04.2022 - 12.05.2022</p>
+              <p className="font-semibold text-secondary">Output Liquid Quantity</p>
+              {/* <p className="text-sm font-medium">12.04.2022 - 12.05.2022</p> */}
             </div>
           </div>
         </div>
@@ -165,12 +166,12 @@ const ChartOne: React.FC = () => {
             <button className="rounded bg-white py-1 px-3 text-xs font-medium text-black shadow-card hover:bg-white hover:shadow-card dark:bg-boxdark dark:text-white dark:hover:bg-boxdark">
               Day
             </button>
-            <button className="rounded py-1 px-3 text-xs font-medium text-black hover:bg-white hover:shadow-card dark:text-white dark:hover:bg-boxdark">
+            {/* <button className="rounded py-1 px-3 text-xs font-medium text-black hover:bg-white hover:shadow-card dark:text-white dark:hover:bg-boxdark">
               Week
             </button>
             <button className="rounded py-1 px-3 text-xs font-medium text-black hover:bg-white hover:shadow-card dark:text-white dark:hover:bg-boxdark">
               Month
-            </button>
+            </button> */}
           </div>
         </div>
       </div>
