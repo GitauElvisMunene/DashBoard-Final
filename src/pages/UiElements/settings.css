@@ -9,11 +9,12 @@
     height: 100vh;
     background-image: url('../../images/icon/new-x.jpg'); 
     background-size: cover;
+    
   }
   
   .recommendations-container {
     /* background-color: rgba(255, 255, 255, 0.8); Semi-transparent white background */
-    background-color: rgba(0, 0, 0, 0.8); 
+    background-color: rgba(0, 0, 0, 0.5); 
     padding: 20px;
     border-radius: 10px;
     text-align: center;
@@ -22,7 +23,7 @@
   }
   
   .recommendations-content {
-    color: white;
+    color: whitesmoke;
   }
   
   .recommendations-content button {

@@ -1,6 +1,26 @@
+import  { useEffect, useState } from 'react';
 import { ApexOptions } from 'apexcharts';
-import React, { useState } from 'react';
 import ReactApexChart from 'react-apexcharts';
+
+
+
+
+// const [iotdata, setiotData] = useState([]);
+
+// useEffect(() => {
+//   const fetchData = async () => {
+//     try {
+//       const response = await fetch('http://localhost:5000/api/data');
+//       const result = await response.json();
+//       setiotData(result);
+//     } catch (error) {
+//       // Handle error
+//     }
+//   };
+
+//   fetchData();
+// }, [setiotData]);
+
 
 const options: ApexOptions = {
   legend: {
@@ -122,7 +142,11 @@ interface ChartOneState {
   }[];
 }
 
+
 const ChartOne: React.FC = () => {
+
+
+
   const [state, setState] = useState<ChartOneState>({
     series: [
       {

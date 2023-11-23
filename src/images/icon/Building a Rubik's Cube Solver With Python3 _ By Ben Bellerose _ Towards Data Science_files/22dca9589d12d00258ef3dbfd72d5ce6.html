@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<!-- saved from url=(0069)https://towardsdatascience.com/media/22dca9589d12d00258ef3dbfd72d5ce6 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Rubiks_Cube_Heuristics.py – Medium</title><meta name="description" content="Instantly share code, notes, and snippets. You can&#39;t perform that action at this time. You signed in with another tab or window. You signed out in another tab or window. Reload to refresh your session. Reload to refresh your session."><meta name="twitter:widgets:csp" content="on"><meta name="robots" content="noindex"><!--<base target="_blank">--><base href="." target="_blank"><style>body {text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: "ff-tisa-web-pro", Georgia, Cambria, "Times New Roman", Times, serif; font-weight: 400; color: #333332; font-size: 18px; line-height: 1.4; margin: 0; background-color: white; overflow: hidden;}iframe {max-width: 100%;}</style></head><body><style>.gist .gist-file { margin-bottom: 0 !important; }.gist { text-rendering: auto; }</style><script src="./d444918b30b9fcd0bfc00ab43e247e21.js.download" charset="utf-8"></script><link rel="stylesheet" href="./gist-embed-232d920b3dfe.css"><div id="gist118714640" class="gist">
+    <div class="gist-file" translate="no">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-rubiks_cube_heuristics-py" class="file my-2">
+    
+    <div itemprop="text" class="Box-body p-0 blob-wrapper data type-python  ">
+
+        
+<div class="js-check-bidi js-blob-code-container blob-code-content">
+
+  <template class="js-file-alert-template"></template>
+<template class="js-line-alert-template"></template>
+
+  <table data-hpc="" class="highlight tab-size js-file-line-container js-code-nav-container js-tagsearch-file" data-tab-size="8" data-paste-markdown-skip="" data-tagsearch-lang="Python" data-tagsearch-path="Rubiks_Cube_Heuristics.py">
+        <tbody><tr>
+          <td id="file-rubiks_cube_heuristics-py-L1" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="1"></td>
+          <td id="file-rubiks_cube_heuristics-py-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-k">def</span> <span class="pl-en">build_heuristic_db</span>(<span class="pl-s1">state</span>, <span class="pl-s1">actions</span>, <span class="pl-s1">max_moves</span> <span class="pl-c1">=</span> <span class="pl-c1">20</span>, <span class="pl-s1">heuristic</span> <span class="pl-c1">=</span> <span class="pl-c1">None</span>):</td>
+        </tr>
+        <tr>
+          <td id="file-rubiks_cube_heuristics-py-L2" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="2"></td>
+          <td id="file-rubiks_cube_heuristics-py-LC2" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">if</span> <span class="pl-s1">heuristic</span> <span class="pl-c1">is</span> <span class="pl-c1">None</span>:</td>
+        </tr>
+        <tr>
+          <td id="file-rubiks_cube_heuristics-py-L3" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="3"></td>
+          <td id="file-rubiks_cube_heuristics-py-LC3" class="blob-code blob-code-inner js-file-line">        <span class="pl-s1">heuristic</span> <span class="pl-c1">=</span> {<span class="pl-s1">state</span>: <span class="pl-c1">0</span>}</td>
+        </tr>
+        <tr>
+          <td id="file-rubiks_cube_heuristics-py-L4" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="4"></td>
+          <td id="file-rubiks_cube_heuristics-py-LC4" class="blob-code blob-code-inner js-file-line">    <span class="pl-s1">que</span> <span class="pl-c1">=</span> [(<span class="pl-s1">state</span>, <span class="pl-c1">0</span>)]</td>
+        </tr>
+        <tr>
+          <td id="file-rubiks_cube_heuristics-py-L5" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="5"></td>
+          <td id="file-rubiks_cube_heuristics-py-LC5" class="blob-code blob-code-inner js-file-line">    <span class="pl-s1">node_count</span> <span class="pl-c1">=</span> <span class="pl-en">sum</span>([<span class="pl-en">len</span>(<span class="pl-s1">actions</span>) <span class="pl-c1">**</span> (<span class="pl-s1">x</span> <span class="pl-c1">+</span> <span class="pl-c1">1</span>) <span class="pl-k">for</span> <span class="pl-s1">x</span> <span class="pl-c1">in</span> <span class="pl-en">range</span>(<span class="pl-s1">max_moves</span> <span class="pl-c1">+</span> <span class="pl-c1">1</span>)])</td>
+        </tr>
+        <tr>
+          <td id="file-rubiks_cube_heuristics-py-L6" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="6"></td>
+          <td id="file-rubiks_cube_heuristics-py-LC6" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">with</span> <span class="pl-en">tqdm</span>(<span class="pl-s1">total</span><span class="pl-c1">=</span><span class="pl-s1">node_count</span>, <span class="pl-s1">desc</span><span class="pl-c1">=</span><span class="pl-s">'Heuristic DB'</span>) <span class="pl-k">as</span> <span class="pl-s1">pbar</span>:</td>
+        </tr>
+        <tr>
+          <td id="file-rubiks_cube_heuristics-py-L7" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="7"></td>
+          <td id="file-rubiks_cube_heuristics-py-LC7" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">while</span> <span class="pl-c1">True</span>:</td>
+        </tr>
+        <tr>
+          <td id="file-rubiks_cube_heuristics-py-L8" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="8"></td>
+          <td id="file-rubiks_cube_heuristics-py-LC8" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">if</span> <span class="pl-c1">not</span> <span class="pl-s1">que</span>:</td>
+        </tr>
+        <tr>
+          <td id="file-rubiks_cube_heuristics-py-L9" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="9"></td>
+          <td id="file-rubiks_cube_heuristics-py-LC9" class="blob-code blob-code-inner js-file-line">                <span class="pl-k">break</span></td>
+        </tr>
+        <tr>
+          <td id="file-rubiks_cube_heuristics-py-L10" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="10"></td>
+          <td id="file-rubiks_cube_heuristics-py-LC10" class="blob-code blob-code-inner js-file-line">            <span class="pl-s1">s</span>, <span class="pl-s1">d</span> <span class="pl-c1">=</span> <span class="pl-s1">que</span>.<span class="pl-en">pop</span>()</td>
+        </tr>
+        <tr>
+          <td id="file-rubiks_cube_heuristics-py-L11" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="11"></td>
+          <td id="file-rubiks_cube_heuristics-py-LC11" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">if</span> <span class="pl-s1">d</span> <span class="pl-c1">&gt;</span> <span class="pl-s1">max_moves</span>:</td>
+        </tr>
+        <tr>
+          <td id="file-rubiks_cube_heuristics-py-L12" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="12"></td>
+          <td id="file-rubiks_cube_heuristics-py-LC12" class="blob-code blob-code-inner js-file-line">                <span class="pl-k">continue</span></td>
+        </tr>
+        <tr>
+          <td id="file-rubiks_cube_heuristics-py-L13" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="13"></td>
+          <td id="file-rubiks_cube_heuristics-py-LC13" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">for</span> <span class="pl-s1">a</span> <span class="pl-c1">in</span> <span class="pl-s1">actions</span>:</td>
+        </tr>
+        <tr>
+          <td id="file-rubiks_cube_heuristics-py-L14" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="14"></td>
+          <td id="file-rubiks_cube_heuristics-py-LC14" class="blob-code blob-code-inner js-file-line">                <span class="pl-s1">cube</span> <span class="pl-c1">=</span> <span class="pl-v">RubiksCube</span>(<span class="pl-s1">state</span><span class="pl-c1">=</span><span class="pl-s1">s</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-rubiks_cube_heuristics-py-L15" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="15"></td>
+          <td id="file-rubiks_cube_heuristics-py-LC15" class="blob-code blob-code-inner js-file-line">                <span class="pl-k">if</span> <span class="pl-s1">a</span>[<span class="pl-c1">0</span>] <span class="pl-c1">==</span> <span class="pl-s">'h'</span>:</td>
+        </tr>
+        <tr>
+          <td id="file-rubiks_cube_heuristics-py-L16" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="16"></td>
+          <td id="file-rubiks_cube_heuristics-py-LC16" class="blob-code blob-code-inner js-file-line">                    <span class="pl-s1">cube</span>.<span class="pl-en">horizontal_twist</span>(<span class="pl-s1">a</span>[<span class="pl-c1">1</span>], <span class="pl-s1">a</span>[<span class="pl-c1">2</span>])</td>
+        </tr>
+        <tr>
+          <td id="file-rubiks_cube_heuristics-py-L17" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="17"></td>
+          <td id="file-rubiks_cube_heuristics-py-LC17" class="blob-code blob-code-inner js-file-line">                <span class="pl-k">elif</span> <span class="pl-s1">a</span>[<span class="pl-c1">0</span>] <span class="pl-c1">==</span> <span class="pl-s">'v'</span>:</td>
+        </tr>
+        <tr>
+          <td id="file-rubiks_cube_heuristics-py-L18" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="18"></td>
+          <td id="file-rubiks_cube_heuristics-py-LC18" class="blob-code blob-code-inner js-file-line">                    <span class="pl-s1">cube</span>.<span class="pl-en">vertical_twist</span>(<span class="pl-s1">a</span>[<span class="pl-c1">1</span>], <span class="pl-s1">a</span>[<span class="pl-c1">2</span>])</td>
+        </tr>
+        <tr>
+          <td id="file-rubiks_cube_heuristics-py-L19" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="19"></td>
+          <td id="file-rubiks_cube_heuristics-py-LC19" class="blob-code blob-code-inner js-file-line">                <span class="pl-k">elif</span> <span class="pl-s1">a</span>[<span class="pl-c1">0</span>] <span class="pl-c1">==</span> <span class="pl-s">'s'</span>:</td>
+        </tr>
+        <tr>
+          <td id="file-rubiks_cube_heuristics-py-L20" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="20"></td>
+          <td id="file-rubiks_cube_heuristics-py-LC20" class="blob-code blob-code-inner js-file-line">                    <span class="pl-s1">cube</span>.<span class="pl-en">side_twist</span>(<span class="pl-s1">a</span>[<span class="pl-c1">1</span>], <span class="pl-s1">a</span>[<span class="pl-c1">2</span>])</td>
+        </tr>
+        <tr>
+          <td id="file-rubiks_cube_heuristics-py-L21" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="21"></td>
+          <td id="file-rubiks_cube_heuristics-py-LC21" class="blob-code blob-code-inner js-file-line">                <span class="pl-s1">a_str</span> <span class="pl-c1">=</span> <span class="pl-s1">cube</span>.<span class="pl-en">stringify</span>()</td>
+        </tr>
+        <tr>
+          <td id="file-rubiks_cube_heuristics-py-L22" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="22"></td>
+          <td id="file-rubiks_cube_heuristics-py-LC22" class="blob-code blob-code-inner js-file-line">                <span class="pl-k">if</span> <span class="pl-s1">a_str</span> <span class="pl-c1">not</span> <span class="pl-c1">in</span> <span class="pl-s1">heuristic</span> <span class="pl-c1">or</span> <span class="pl-s1">heuristic</span>[<span class="pl-s1">a_str</span>] <span class="pl-c1">&gt;</span> <span class="pl-s1">d</span> <span class="pl-c1">+</span> <span class="pl-c1">1</span>:</td>
+        </tr>
+        <tr>
+          <td id="file-rubiks_cube_heuristics-py-L23" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="23"></td>
+          <td id="file-rubiks_cube_heuristics-py-LC23" class="blob-code blob-code-inner js-file-line">                    <span class="pl-s1">heuristic</span>[<span class="pl-s1">a_str</span>] <span class="pl-c1">=</span> <span class="pl-s1">d</span> <span class="pl-c1">+</span> <span class="pl-c1">1</span></td>
+        </tr>
+        <tr>
+          <td id="file-rubiks_cube_heuristics-py-L24" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="24"></td>
+          <td id="file-rubiks_cube_heuristics-py-LC24" class="blob-code blob-code-inner js-file-line">                <span class="pl-s1">que</span>.<span class="pl-en">append</span>((<span class="pl-s1">a_str</span>, <span class="pl-s1">d</span><span class="pl-c1">+</span><span class="pl-c1">1</span>))</td>
+        </tr>
+        <tr>
+          <td id="file-rubiks_cube_heuristics-py-L25" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="25"></td>
+          <td id="file-rubiks_cube_heuristics-py-LC25" class="blob-code blob-code-inner js-file-line">                <span class="pl-s1">pbar</span>.<span class="pl-en">update</span>(<span class="pl-c1">1</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-rubiks_cube_heuristics-py-L26" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="26"></td>
+          <td id="file-rubiks_cube_heuristics-py-LC26" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">return</span> <span class="pl-s1">heuristic</span></td>
+        </tr>
+  </tbody></table>
+</div>
+
+
+    </div>
+
+  </div>
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/bellerb/d444918b30b9fcd0bfc00ab43e247e21/raw/8b3499e3f074b4c1e14c0da38b7da65f4ddd95a3/Rubiks_Cube_Heuristics.py" style="float:right" class="Link--inTextBlock">view raw</a>
+        <a href="https://gist.github.com/bellerb/d444918b30b9fcd0bfc00ab43e247e21#file-rubiks_cube_heuristics-py" class="Link--inTextBlock">
+          Rubiks_Cube_Heuristics.py
+        </a>
+        hosted with ❤ by <a class="Link--inTextBlock" href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+<script>var height = -1; var delayMs = 200; if (document) {document.domain = document.domain;}function notifyResize(height) {height = height ? height : document.documentElement.offsetHeight; var resized = false; if (window.donkey && donkey.resize) {donkey.resize(height);var elements = document.getElementsByClassName("gist-data"); for (var i = 0; i < elements.length; i++) {elements[i].style.overflow = "visible"}resized = true;}if (parent && parent._resizeIframe) {var obj = {iframe: window.frameElement, height: height}; parent._resizeIframe(obj); resized = true;}if (window.location && window.location.hash === "#amp=1" && window.parent && window.parent.postMessage) {window.parent.postMessage({sentinel: "amp", type: "embed-size", height: height}, "*");}if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.resize) {window.webkit.messageHandlers.resize.postMessage(height); resized = true;}return resized;}function maybeResize() {try {if (document.documentElement.offsetHeight != height && notifyResize()) {height = document.documentElement.offsetHeight;}delayMs = Math.min(delayMs * 2, 1000000); setTimeout(maybeResize, delayMs);} catch(error) {console.log('maybeResize error: ', error)}}maybeResize();</script><script defer="" src="./v84a3a4012de94ce1a686ba8c167c359c1696973893317" integrity="sha512-euoFGowhlaLqXsPWQ48qSkBSCFs3DPRyiwVu3FjR96cMPx+Fr+gpWRhIafcHwqwCqWS42RZhIudOvEI+Ckf6MA==" data-cf-beacon="{&quot;rayId&quot;:&quot;8296a423cfaf73c1&quot;,&quot;version&quot;:&quot;2023.10.0&quot;,&quot;token&quot;:&quot;0b5f665943484354a59c39c6833f7078&quot;}" crossorigin="anonymous"></script>
+</body></html>

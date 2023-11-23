@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import "./UiElements/settings.css"
 
-
-
 const Settings = () => {
-  const [randomRecommendation, setRandomRecommendation] = useState('');
+  const [randomRecommendations, setRandomRecommendations] = useState([]);
 
   const recommendationData = [
     'Try reducing shower time to save water.',
@@ -24,24 +22,24 @@ const Settings = () => {
     'Recommend water-efficient showerheads for reduced water consumption.',
   ];
 
-  const getRandomRecommendation = () => {
-    const randomIndex = Math.floor(Math.random() * recommendationData.length);
-    setRandomRecommendation(recommendationData[randomIndex]);
+  const getRandomRecommendations = () => {
+    const shuffledRecommendations = [...recommendationData].sort(() => Math.random() - 0.5);
+    const selectedRecommendations = shuffledRecommendations.slice(0, 3);
+    setRandomRecommendations(selectedRecommendations);
   };
 
-
   return (
-    <>
     <div className="container">
-     <div className="recommendations-container">
-      <div className="recommendations-content">
-        <h1>Water Saving Tips</h1>
-        <button onClick={getRandomRecommendation}>Get Tip</button>
-        {randomRecommendation && <p className="tip-text">{randomRecommendation}</p>}
+      <div className="recommendations-container">
+        <div className="recommendations-content">
+          <h1>Water Saving Tips</h1>
+          <button onClick={getRandomRecommendations}>Get Tips</button>
+          {randomRecommendations.map((recommendation, index) => (
+            <p key={index} className="tip-text">{recommendation}</p>
+          ))}
+        </div>
       </div>
     </div>
-    </div>
-          </>
   );
 };
 
