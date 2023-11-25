@@ -12,7 +12,41 @@ import TableOne from '../../components/TableOne.tsx';
 
 const ECommerce:React.FC = () => {
 
- 
+  const [iotdata, setIotData] = useState([]);
+
+  useEffect(() => {
+    // Function to fetch data from the server
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/data');
+        const result = await response.json();
+        setIotData(result);
+        // Store data in local storage
+        localStorage.setItem('iotData', JSON.stringify(result));
+      } catch (error) {
+        // Handle error
+      }
+    };
+
+    // Function to fetch data at regular intervals
+    const fetchDataInterval = () => {
+      fetchData();
+    };
+
+    // Initial fetch when component mounts
+    fetchData();
+
+    // Set up interval to fetch data every, for example, 5 minutes (300,000 milliseconds)
+    const intervalId = setInterval(fetchDataInterval, 300000);
+
+    // Clear the interval when the component is unmounted
+    return () => clearInterval(intervalId);
+  }, []);
+
+
+  
+  
+
 
 
 
@@ -26,7 +60,7 @@ const ECommerce:React.FC = () => {
       </div>
 
       <div className="mt-4 grid grid-cols-12 gap-4 md:mt-6 md:gap-6 2xl:mt-7.5 2xl:gap-7.5">
-        <ChartOne/>
+        <ChartOne data={iotdata}/>
         {/* <ChartTwo /> */}
         <ChartThree />
         {/* <MapOne /> */}
