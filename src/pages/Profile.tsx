@@ -1,6 +1,6 @@
 import Breadcrumb from '../components/Breadcrumb';
 import CoverOne from '../images/cover/cover-01.png';
-import userSix from '../images/user/Alb-incognito.png';
+import userSix from '../images/user/animate.png';
 
 const Profile = () => {
   return (
@@ -87,9 +87,9 @@ const Profile = () => {
           </div>
           <div className="mt-4">
             <h3 className="mb-1.5 text-2xl font-semibold text-black dark:text-white">
-              Albert Sitati
+              User1
             </h3>
-            <p className="font-medium">Solutions Architect</p>
+            <p className="font-medium">Lorem ipsum </p>
             <div className="mx-auto mt-4.5 mb-5.5 grid max-w-94 grid-cols-3 rounded-md border border-stroke py-2.5 shadow-1 dark:border-strokedark dark:bg-[#37404F]">
               <div className="flex flex-col items-center justify-center gap-1 border-r border-stroke px-4 dark:border-strokedark xsm:flex-row">
                 <span className="font-semibold text-black dark:text-white">
@@ -116,7 +116,7 @@ const Profile = () => {
                 About Me
               </h4>
               <p className="mt-4.5">
-              Microsoft Azure Cloud Architect | Co-Founder Resource Cloud Academy (RCA) | Helping businesses develop sustainable Cloud Migration Strategy while remaining Compliant.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam suscipit perferendis laboriosam illo placeat velit tempora, quisquam, blanditiis libero cum nostrum nulla praesentium nemo esse nesciunt laudantium adipisci autem temporibus!
               </p>
             </div>
 
