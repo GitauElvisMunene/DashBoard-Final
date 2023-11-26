@@ -43,7 +43,7 @@ const ECommerce:React.FC = () => {
     return () => clearInterval(intervalId);
   }, []);
 
-  console.log(iotdata)
+  
 
   return (
     <>

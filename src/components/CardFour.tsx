@@ -22,7 +22,7 @@ interface ChartFourProps {
 
 const CardFour: React.FC<ChartFourProps> = ({ data }) => {
   // Log the data for debugging
-  console.log(data.map((dataItem) => dataItem.date));
+  
 
   // Check if data is undefined or empty
   if (!data || data.length === 0) {

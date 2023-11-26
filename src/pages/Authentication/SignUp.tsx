@@ -1,8 +1,66 @@
 import { Link } from 'react-router-dom';
-import LogoDark from '../../images/logo/logo-dark.svg';
-import Logo from '../../images/logo/logo.svg';
+import React, { useState } from 'react';
+// import LogoDark from '../../images/logo/logo-dark.svg';
+// import Logo from '../../images/logo/logo.svg';
+import { useNavigate } from 'react-router-dom';
+
+
+
+
+
+
+
+
 
 const SignUp = () => {
+
+    const navigate = useNavigate();
+  
+    const [formData, setFormData] = useState({
+      name: '',
+      email: '',
+      password: '',
+    });
+  
+    const [error, setError] = useState('');
+  
+    const handleChange = (e) => {
+      setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+  
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+  
+      try {
+        // Make a POST request to your Node.js server
+        const response = await fetch('http://localhost:8080/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        });
+  
+        if (response.ok) {
+          // Redirect to another page after successful signup
+          navigate('/auth/signin'); // Replace '/success-page' with your desired route
+        } else if (response.status === 400) {
+          // If user with the same email already exists, set an error
+          setError('Duplicate email. Please sign in instead.');
+          navigate('/auth/signin'); // Redirect to the sign-in page
+        } else {
+          // Handle other error responses from the server
+          setError('Something went wrong. Please try again.');
+        }
+      } catch (error) {
+        console.error(error);
+        // Handle network errors or other exceptions
+        setError('Internal Server Error. Please try again later.');
+      }
+    };
+  
+
+
   return (
     <>
       <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
@@ -149,16 +207,18 @@ const SignUp = () => {
                 Sign Up to SWMS
               </h2>
 
-              <form>
+              <form onSubmit={handleSubmit}>
                 <div className="mb-4">
                   <label className="mb-2.5 block font-medium text-black dark:text-white">
                     Name
                   </label>
                   <div className="relative">
+                  
                     <input
                       type="text"
                       placeholder="Enter your full name"
                       className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                      name="name" value={formData.name} onChange={handleChange} 
                     />
 
                     <span className="absolute right-4 top-4">
@@ -194,6 +254,7 @@ const SignUp = () => {
                       type="email"
                       placeholder="Enter your email"
                       className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                      name="email" value={formData.email} onChange={handleChange}
                     />
 
                     <span className="absolute right-4 top-4">
@@ -225,6 +286,7 @@ const SignUp = () => {
                       type="password"
                       placeholder="Enter your password"
                       className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                      name="password" value={formData.password} onChange={handleChange}
                     />
 
                     <span className="absolute right-4 top-4">
