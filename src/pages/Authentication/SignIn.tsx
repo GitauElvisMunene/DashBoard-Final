@@ -1,8 +1,44 @@
 import { Link } from 'react-router-dom';
-import LogoDark from '../../images/logo/logo-dark.svg';
-import Logo from '../../images/logo/logo.svg';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { signIn } from './apiService';
+// import LogoDark from '../../images/logo/logo-dark.svg';
+// import Logo from '../../images/logo/logo.svg';
 
 const SignIn = () => {
+
+
+  const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSignIn = async (e) => {
+    e.preventDefault();
+
+    try {
+      const data = await signIn(email, password);
+
+      // Assuming your backend sends a token upon successful login
+      const token = data.user;
+
+      // Save the token in local storage or context for future API requests
+      localStorage.setItem('token', token);
+
+      // Redirect to another page on successful login
+      navigate('/');
+    } catch (error) {
+      // Handle login error
+      console.error('Error during login:', error.message);
+    }
+  };
+
+
+
+
+
+
+
+
   return (
     <>
       <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
@@ -150,17 +186,19 @@ const SignIn = () => {
                 Sign In to SWMS
               </h2>
 
-              <form>
+              <form onSubmit={handleSignIn}>
                 <div className="mb-4">
                   <label className="mb-2.5 block font-medium text-black dark:text-white">
                     Email
                   </label>
                   <div className="relative">
-                    <input
-                      type="email"
-                      placeholder="Enter your email"
-                      className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-                    />
+                  <input
+            type="email"
+            placeholder="Enter your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+          />
 
                     <span className="absolute right-4 top-4">
                       <svg
@@ -184,14 +222,16 @@ const SignIn = () => {
 
                 <div className="mb-6">
                   <label className="mb-2.5 block font-medium text-black dark:text-white">
-                    Re-type Password
+                    Password
                   </label>
                   <div className="relative">
-                    <input
-                      type="password"
-                      placeholder="6+ Characters, 1 Capital letter"
-                      className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-                    />
+                  <input
+            type="password"
+            placeholder="Enter your password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+          />
 
                     <span className="absolute right-4 top-4">
                       <svg
@@ -217,13 +257,12 @@ const SignIn = () => {
                   </div>
                 </div>
 
-                <div className="mb-5">
-                  <input
-                    type="submit"
-                    value="Sign In"
-                    className="w-full cursor-pointer rounded-lg border border-primary bg-primary p-4 text-white transition hover:bg-opacity-90"
-                  />
-                </div>
+                <button
+        type="submit"
+        className="w-full bg-primary text-white py-4 rounded-lg transition duration-300 hover:bg-primary-dark"
+      >
+        Sign In
+      </button>
 
                 <button className="flex w-full items-center justify-center gap-3.5 rounded-lg border border-stroke bg-gray p-4 hover:bg-opacity-50 dark:border-strokedark dark:bg-meta-4 dark:hover:bg-opacity-50">
                   <span>
