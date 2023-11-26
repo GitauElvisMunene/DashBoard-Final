@@ -26,6 +26,7 @@ interface ChartOneState {
 }
 
 const ChartOne: React.FC<ChartOneProps> = ({ data }) => {
+  
   const [state, setState] = useState<ChartOneState>({
     series: [
       {

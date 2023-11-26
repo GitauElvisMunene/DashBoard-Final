@@ -18,7 +18,7 @@ const ECommerce:React.FC = () => {
     // Function to fetch data from the server
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/data');
+        const response = await fetch('http://localhost:8080/api/data');
         const result = await response.json();
         setIotData(result);
         // Store data in local storage
@@ -43,20 +43,15 @@ const ECommerce:React.FC = () => {
     return () => clearInterval(intervalId);
   }, []);
 
-
-  
-  
-
-
-
+  console.log(iotdata)
 
   return (
     <>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
-        <CardOne />
-        <CardTwo />
-        <CardThree />
-        <CardFour />
+        <CardOne data={iotdata}/>
+        <CardTwo data={iotdata}/>
+        <CardThree data={iotdata}/>
+        <CardFour data={iotdata}/>
       </div>
 
       <div className="mt-4 grid grid-cols-12 gap-4 md:mt-6 md:gap-6 2xl:mt-7.5 2xl:gap-7.5">
