@@ -33,7 +33,7 @@ const SignUp = () => {
   
       try {
         // Make a POST request to your Node.js server
-        const response = await fetch('http://localhost:8080/register', {
+        const response = await fetch('https://swms-7p8s.onrender.com//register', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

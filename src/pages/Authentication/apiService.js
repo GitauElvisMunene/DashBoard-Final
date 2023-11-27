@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:8080';
+const BASE_URL = 'https://swms-7p8s.onrender.com'; 
 
 // Function to store authentication state (e.g., token) in local storage
 const storeAuthenticationState = (token) => {
