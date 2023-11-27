@@ -11,6 +11,7 @@ const SignIn = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
 
   const handleSignIn = async (e) => {
     e.preventDefault();
@@ -29,6 +30,7 @@ const SignIn = () => {
     } catch (error) {
       // Handle login error
       console.error('Error during login:', error.message);
+      setError('Invalid email or password'); // Set an appropriate error message
     }
   };
 
@@ -256,6 +258,11 @@ const SignIn = () => {
                     </span>
                   </div>
                 </div>
+                {error && (
+          <div className="text-red-500 mb-4">
+            {error}
+          </div>
+        )}
 
                 <button
         type="submit"
