@@ -11,6 +11,11 @@ export const checkAuthentication = () => {
   return !!token; // Returns true if the token exists
 };
 
+// Function to remove authentication state (e.g., token) from local storage
+const removeAuthenticationState = () => {
+  localStorage.removeItem('authToken');
+};
+
 export const signIn = async (email, password) => {
   try {
     const response = await fetch(`${BASE_URL}/login`, {
@@ -35,6 +40,22 @@ export const signIn = async (email, password) => {
   } catch (error) {
     // Handle fetch error
     console.error('Error during login:', error.message);
+    throw error;
+  }
+};
+
+export const signOut = async () => {
+  try {
+    // You may need to send a request to your server to perform any necessary cleanup
+
+    // For now, let's just remove the authentication state locally
+    removeAuthenticationState();
+
+    // You can perform additional cleanup or actions here if needed
+
+    console.log('User successfully signed out');
+  } catch (error) {
+    console.error('Error during sign out:', error.message);
     throw error;
   }
 };

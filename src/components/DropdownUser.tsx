@@ -1,10 +1,16 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
-
+import { Link, useNavigate } from 'react-router-dom';
+import { signOut } from '../pages/Authentication/apiService'; // Create a signOut function in your apiService
 import UserOne from '../images/user/animate.png';
 
 const DropdownUser = () => {
+  const navigate = useNavigate();
+  const [error, setError] = useState(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+
+
+
+
 
   const trigger = useRef<any>(null);
   const dropdown = useRef<any>(null);
@@ -34,6 +40,20 @@ const DropdownUser = () => {
     document.addEventListener('keydown', keyHandler);
     return () => document.removeEventListener('keydown', keyHandler);
   });
+
+
+  const handleSignOut = async () => {
+    try {
+      // Call your signOut function from apiService or handle it here
+      // Clear local storage or perform any necessary cleanup
+      localStorage.removeItem('authToken');
+      // Redirect to the login page or any other desired page
+      navigate("/auth/signin");
+    } catch (error) {
+      console.error('Error during log-out:', error.message);
+      setError('Error during log-out'); // Set an appropriate error message
+    }
+  };
 
   return (
     <div className="relative">
@@ -155,7 +175,7 @@ const DropdownUser = () => {
             </Link>
           </li>
         </ul>
-        <button className="flex items-center gap-3.5 py-4 px-6 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base">
+        <button className="flex items-center gap-3.5 py-4 px-6 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"  onClick={handleSignOut} >
           <svg
             className="fill-current"
             width="22"
