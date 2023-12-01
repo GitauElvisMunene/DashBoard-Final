@@ -26,6 +26,9 @@ interface ChartOneState {
 }
 
 const ChartOne: React.FC<ChartOneProps> = ({ data }) => {
+
+
+
   
   const [state, setState] = useState<ChartOneState>({
     series: [
@@ -153,7 +156,7 @@ const ChartOne: React.FC<ChartOneProps> = ({ data }) => {
       const updatedSeries: ChartOneState['series'] = [
         {
           name: 'Flow Volume',
-          data: data.map(dataPoint => dataPoint.device_data?.flowVolume || 0),
+          data: data.map(dataPoint => dataPoint.device_data?.OutputLiquidQuantity || 0),
         },
         {
           name: 'Flow Pulse',
