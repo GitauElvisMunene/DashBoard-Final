@@ -150,17 +150,18 @@ const ChartOne: React.FC<ChartOneProps> = ({ data }) => {
     series: state.series,
   };
   
+  console.log(data)
 
   useEffect(() => {
     if (data) {
       const updatedSeries: ChartOneState['series'] = [
         {
-          name: 'Flow Volume',
+          name: 'Liquid Quantity',
           data: data.map(dataPoint => dataPoint.device_data?.OutputLiquidQuantity || 0),
         },
         {
           name: 'Flow Pulse',
-          data: data.map(dataPoint => dataPoint.flowPulse || 0),
+          data: data.map(dataPoint => dataPoint.device_data?.flowPulse|| 0),
         },
       ];
 
