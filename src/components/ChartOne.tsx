@@ -49,7 +49,7 @@ const ChartOne: React.FC<ChartOneProps> = ({ data }) => {
       position: 'top',
       horizontalAlign: 'left',
     },
-    colors: ['#3C50E0', '#80CAEE'],
+    colors: ['#80CAEE','#3C50E0'],
     chart: {
       fontFamily: 'Satoshi, sans-serif',
       height: 335,
@@ -128,7 +128,7 @@ const ChartOne: React.FC<ChartOneProps> = ({ data }) => {
         .sort((a, b) => new Date(`${a.date} ${a.time}`) - new Date(`${b.date} ${b.time}`))
         .map((dataPoint) => `${dataPoint.date} ${dataPoint.time}`),
       labels: {
-        format: 'yyyy-MM-dd HH:mm:ss',
+        format: 'HH:mm:ss',
       },
       axisBorder: {
         show: false,

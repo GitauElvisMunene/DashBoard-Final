@@ -33,7 +33,7 @@ const CardFour: React.FC<ChartFourProps> = ({ data }) => {
     );
   }
 
-  const latestData = data[0]; // Assuming data is sorted chronologically
+  const latestData = data[data.length -1]; // Assuming data is sorted chronologically
 
   return (
     <div className="rounded-sm border border-stroke bg-white py-6 px-7.5 shadow-default dark:border-strokedark dark:bg-boxdark">
