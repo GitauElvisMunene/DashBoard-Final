@@ -125,8 +125,8 @@ const ChartOne: React.FC<ChartOneProps> = ({ data }) => {
     xaxis: {
       type: 'datetime',
       categories: data
-        .sort((a, b) => new Date(`${a.date} ${a.time}`) - new Date(`${b.date} ${b.time}`))
-        .map((dataPoint) => `${dataPoint.date} ${dataPoint.time}`),
+      .sort((a, b) => new Date(`${a.date}T${a.time}Z`) - new Date(`${b.date}T${b.time}Z`))
+      .map((dataPoint) => new Date(`${dataPoint.date}T${dataPoint.time}Z`).toISOString()),
       labels: {
         format: 'HH:mm:ss',
       },
