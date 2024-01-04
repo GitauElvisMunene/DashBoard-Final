@@ -490,7 +490,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                       </clipPath>
                     </defs>
                   </svg>
-                  Water usage trend
+                  Threshold Setting
                 </NavLink>
               </li>
               {/* <!-- Menu Item Chart --> */}
