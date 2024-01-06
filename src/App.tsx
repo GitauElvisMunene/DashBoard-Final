@@ -1,7 +1,7 @@
 import { Suspense, lazy, useEffect, useState } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate, useNavigate } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
-
+import { checkAuthentication } from "./pages/Authentication/apiService";
 
 import ECommerce from './pages/Dashboard/ECommerce';
 import SignIn from './pages/Authentication/SignIn';
@@ -12,12 +12,27 @@ import routes from './routes';
 const DefaultLayout = lazy(() => import('./layout/DefaultLayout'));
 
 function App() {
+  const navigate = useNavigate();
   const [loading, setLoading] = useState<boolean>(true);
-
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 
   useEffect(() => {
-    setTimeout(() => setLoading(false), 1000);
+    const authenticateUser = async () => {
+      try {
+        const isAuthenticated = await checkAuthentication();
+        setIsAuthenticated(isAuthenticated);
+      } catch (error) {
+        console.error('Error during authentication check:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+  
+    authenticateUser();
   }, []);
+
+  
+
 
   return loading ? (
     <Loader />
@@ -31,22 +46,20 @@ function App() {
       <Routes>
         <Route path="/auth/signin" element={<SignIn />} />
         <Route path="/auth/signup" element={<SignUp />} />
-        <Route element={<DefaultLayout />}>
+        <Route element={<DefaultLayout isAuthenticated={isAuthenticated} />}>
           <Route index element={<ECommerce />} />
-          {routes.map((routes, index) => {
-            const { path, component: Component } = routes;
-            return (
-              <Route
-                key={index}
-                path={path}
-                element={
-                  <Suspense fallback={<Loader />}>
-                    <Component />
-                  </Suspense>
-                }
-              />
-            );
-          })}
+          {routes.map((route, index) => (
+            <Route
+              key={index}
+              path={route.path}
+              element={
+                <Suspense fallback={<Loader />}>
+                  {/* Check if the user is authenticated before rendering the component */}
+                  {isAuthenticated ? <route.component /> : navigate("/auth/signin")}
+                </Suspense>
+              }
+            />
+          ))}
         </Route>
       </Routes>
     </>

@@ -8,7 +8,9 @@ const storeAuthenticationState = (token) => {
 // Function to check if the user is authenticated based on stored token
 export const checkAuthentication = () => {
   const token = localStorage.getItem('authToken');
-  return !!token; // Returns true if the token exists
+  const isAuthenticated = !!token; // Returns true if the token exists
+  console.log('Is Authenticated:', isAuthenticated);
+  return isAuthenticated;
 };
 
 // Function to remove authentication state (e.g., token) from local storage
@@ -32,6 +34,7 @@ export const signIn = async (email, password) => {
     if (response.ok) {
       // Handle successful login
       storeAuthenticationState(data.token); // Store the authentication state (e.g., token)
+      console.log('User successfully signed in'); // Add this line
       return data;
     } else {
       // Handle login error
@@ -46,14 +49,10 @@ export const signIn = async (email, password) => {
 
 export const signOut = async () => {
   try {
-    // You may need to send a request to your server to perform any necessary cleanup
-
-    // For now, let's just remove the authentication state locally
     removeAuthenticationState();
-
-    // You can perform additional cleanup or actions here if needed
-
     console.log('User successfully signed out');
+    // Redirect to sign-in page
+    window.location.href = '/auth/signin'; // Adjust the path as needed
   } catch (error) {
     console.error('Error during sign out:', error.message);
     throw error;
