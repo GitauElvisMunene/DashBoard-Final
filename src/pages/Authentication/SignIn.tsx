@@ -18,7 +18,9 @@ const SignIn = () => {
 
     try {
       const data = await signIn(email, password);
-
+      console.log(data);
+      // navigate('/');
+      window.location.href="/"
       // Assuming your backend sends a token upon successful login
       const token = data.user;
 
@@ -26,7 +28,7 @@ const SignIn = () => {
       localStorage.setItem('token', token);
 
       // Redirect to another page on successful login
-      navigate('/');
+      // navigate('/');
     } catch (error) {
       // Handle login error
       console.error('Error during login:', error.message);

@@ -15,11 +15,16 @@ function App() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState<boolean>(true);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  
 
   useEffect(() => {
+    console.log(67)
     const authenticateUser = async () => {
       try {
         const isAuthenticated = await checkAuthentication();
+        if (isAuthenticated) {
+          navigate('/');
+        }
         setIsAuthenticated(isAuthenticated);
       } catch (error) {
         console.error('Error during authentication check:', error);
@@ -47,7 +52,7 @@ function App() {
         <Route path="/auth/signin" element={<SignIn />} />
         <Route path="/auth/signup" element={<SignUp />} />
         <Route element={<DefaultLayout isAuthenticated={isAuthenticated} />}>
-          <Route index element={<ECommerce />} />
+          <Route path='/'  element={<ECommerce />} />
           {routes.map((route, index) => (
             <Route
               key={index}

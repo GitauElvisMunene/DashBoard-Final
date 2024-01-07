@@ -1,3 +1,4 @@
+
 const BASE_URL = 'https://swms-7p8s.onrender.com'; 
 
 // Function to store authentication state (e.g., token) in local storage
@@ -36,6 +37,7 @@ export const signIn = async (email, password) => {
       // Handle successful login
       storeAuthenticationState(data.user); // Store the authentication state (e.g., token)
       console.log('User successfully signed in'); // Add this line
+      
       return data;
     } else {
       // Handle login error
