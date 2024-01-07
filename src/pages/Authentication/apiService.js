@@ -32,8 +32,9 @@ export const signIn = async (email, password) => {
     console.log(data);
 
     if (response.ok) {
+      console.log(response);
       // Handle successful login
-      storeAuthenticationState(data.token); // Store the authentication state (e.g., token)
+      storeAuthenticationState(data.user); // Store the authentication state (e.g., token)
       console.log('User successfully signed in'); // Add this line
       return data;
     } else {

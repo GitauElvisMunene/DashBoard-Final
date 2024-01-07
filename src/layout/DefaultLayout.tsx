@@ -14,7 +14,7 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({ isAuthenticated }) => {
 
   useEffect(() => {
     const checkAuthenticationAsync = async () => {
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // await new Promise(resolve => setTimeout(resolve, 1000));
       const isAuthenticated = checkAuthentication();
       console.log('IsAuthenticated:', isAuthenticated);
       setLoading(false);
