@@ -5,10 +5,11 @@ import SidebarLinkGroup from './SidebarLinkGroup';
 
 interface SidebarProps {
   sidebarOpen: boolean;
-  setSidebarOpen: (arg: boolean) => void;
+  setSidebarOpen: (isOpen: boolean) => void;
 }
 
-const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
+const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen }) => {
+  console.log('Sidebar Props:', { sidebarOpen, setSidebarOpen });
   const location = useLocation();
   const { pathname } = location;
 
@@ -20,31 +21,34 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
     storedSidebarExpanded === null ? false : storedSidebarExpanded === 'true'
   );
 
-  // close on click outside
+  // close on click outside (for larger screens)
   useEffect(() => {
-    const clickHandler = ({ target }: MouseEvent) => {
+    const clickHandler = ({ target, clientX }: MouseEvent) => {
       if (!sidebar.current || !trigger.current) return;
-      if (
-        !sidebarOpen ||
-        sidebar.current.contains(target) ||
-        trigger.current.contains(target)
-      )
-        return;
-      setSidebarOpen(false);
+
+      // Check if the screen width is smaller than a certain threshold (adjust as needed)
+      const isSmallScreen = window.innerWidth <= 1023;
+
+      if (!isSmallScreen && sidebarOpen && !sidebar.current.contains(target) && !trigger.current.contains(target)) {
+        setSidebarOpen(false);
+      }
     };
+
     document.addEventListener('click', clickHandler);
     return () => document.removeEventListener('click', clickHandler);
-  });
+  }, [sidebarOpen]);
 
   // close if the esc key is pressed
   useEffect(() => {
     const keyHandler = ({ keyCode }: KeyboardEvent) => {
-      if (!sidebarOpen || keyCode !== 27) return;
-      setSidebarOpen(false);
+      if (sidebarOpen && keyCode === 27) {
+        setSidebarOpen(false);
+      }
     };
+
     document.addEventListener('keydown', keyHandler);
     return () => document.removeEventListener('keydown', keyHandler);
-  });
+  }, [sidebarOpen]);
 
   useEffect(() => {
     localStorage.setItem('sidebar-expanded', sidebarExpanded.toString());
