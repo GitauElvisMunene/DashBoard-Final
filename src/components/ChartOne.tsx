@@ -136,11 +136,19 @@ const ChartOne: React.FC<ChartOneProps> = ({ data }) => {
       axisTicks: {
         show: false,
       },
+      title: {
+        text: 'Time', // Label for the x-axis
+        style: {
+          fontSize: '14px',
+        
+        },
+      },
     },
     yaxis: {
       title: {
+        text: 'Output Liquid Quantity and Flow Pulse', // Label for the y-axis
         style: {
-          fontSize: '0px',
+          fontSize: '14px',
         },
       },
       min: 0,
