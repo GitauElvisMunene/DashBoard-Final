@@ -16,40 +16,56 @@ import TableOne from '../../components/TableOne.tsx';
 const ECommerce:React.FC = () => {
 
   const [iotdata, setIotData] = useState([]);
+  const [selectedDate, setSelectedDate] = useState<string>('');
+  console.log(selectedDate) 
+  console.log(iotdata)
+
+  const fetchData = async (date: string) => {
+    try {
+      const response = await fetch(`https://swms-7p8s.onrender.com/api/data?date=${date}`);
+      const result = await response.json();
+      setIotData(result);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  const handleDateChange = (newDate: string) => {
+    setSelectedDate(newDate);
+  };
+
+  const handleFetchData = () => {
+    fetchData(selectedDate);
+  };
 
   useEffect(() => {
-    // Function to fetch data from the server
-    const fetchData = async () => {
-      try {
-        const response = await fetch('https://swms-7p8s.onrender.com/api/data');
-        const result = await response.json();
-        setIotData(result);
-        // Store data in local storage
-        localStorage.setItem('iotData', JSON.stringify(result));
-      } catch (error) {
-        // Handle error
-      }
-    };
+    // Set a default date when the component mounts
+    const defaultDate = '2022-01-01'; // Replace with your desired default date
+    setSelectedDate(defaultDate);
 
-    // Function to fetch data at regular intervals
-    const fetchDataInterval = () => {
-      fetchData();
-    };
-
-    // Initial fetch when component mounts
-    fetchData();
+    // Initial fetch with the default date
+    fetchData(defaultDate);
 
     // Set up interval to fetch data every, for example, 5 minutes (300,000 milliseconds)
-    const intervalId = setInterval(fetchDataInterval, 300000);
+    const intervalId = setInterval(() => fetchData(selectedDate), 300000);
 
     // Clear the interval when the component is unmounted
     return () => clearInterval(intervalId);
-  }, []);
-
-  
+  }, []); // Empty dependency array ensures this effect runs only once on mount
 
   return (
     <>
+
+<div style={{ color: '#80CAEE', fontWeight: 'bold' }}>
+<label>Select Date:</label>
+        <input
+          type="date"
+          value={selectedDate}
+          onChange={(e) => handleDateChange(e.target.value)}
+        />
+        <button onClick={handleFetchData}>Fetch Data</button>
+      </div>
+
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
         <CardOne data={iotdata}/>
         <CardTwo data={iotdata}/>
