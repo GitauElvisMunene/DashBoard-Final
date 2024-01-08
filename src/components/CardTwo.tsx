@@ -31,7 +31,7 @@ const CardTwo: React.FC<ChartTwoProps> = ({ data }) => {
             <h4 className="text-title-md font-bold text-black dark:text-white">
               {latestData.device_data.flowPulse} flowPulse
             </h4>
-            <span className="text-sm font-medium">Water Pressure Level</span>
+            <span className="text-sm font-medium">Flow Pulse</span>
           </div>
 
           <span className="flex items-center gap-1 text-sm font-medium text-meta-3">

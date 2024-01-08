@@ -34,7 +34,7 @@ const CardOne: React.FC<ChartOneProps> = ({ data }) => {
             <h4 className="text-title-md font-bold text-black dark:text-white">
               {latestData.device_data.flowVolume}L/m
             </h4>
-            <span className="text-sm font-medium">Flow Rate</span>
+            <span className="text-sm font-medium">Flow Volume</span>
           </div>
 
           <span className="flex items-center gap-1 text-sm font-medium text-meta-3">

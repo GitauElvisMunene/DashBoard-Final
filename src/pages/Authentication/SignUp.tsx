@@ -359,7 +359,7 @@ const SignUp = () => {
                     {/* <Link to="/auth/signin" className="text-primary">
                       Sign in
                     </Link> */}
-                    <NavLink to="/auth/signup">Sign in</NavLink>
+                    <NavLink to="/auth/signup">Sign Up</NavLink>
                   </p>
                 </div>
               </form>
