@@ -18,7 +18,7 @@ function App() {
   
 
   useEffect(() => {
-    console.log(67)
+    
     const authenticateUser = async () => {
       try {
         const isAuthenticated = await checkAuthentication();

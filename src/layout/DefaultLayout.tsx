@@ -16,7 +16,7 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({ isAuthenticated }) => {
     const checkAuthenticationAsync = async () => {
       // await new Promise(resolve => setTimeout(resolve, 1000));
       const isAuthenticated = checkAuthentication();
-      console.log('IsAuthenticated:', isAuthenticated);
+      // console.log('IsAuthenticated:', isAuthenticated);
       setLoading(false);
     };
 
@@ -28,7 +28,7 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({ isAuthenticated }) => {
   }
 
   if (!isAuthenticated) {
-    console.log('User not authenticated. Redirecting...');
+    // console.log('User not authenticated. Redirecting...');
     return null;
   }
 

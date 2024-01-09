@@ -17,8 +17,8 @@ const ECommerce:React.FC = () => {
 
   const [iotdata, setIotData] = useState([]);
   const [selectedDate, setSelectedDate] = useState<string>('');
-  console.log(selectedDate) 
-  console.log(iotdata)
+  // console.log(selectedDate) 
+  // console.log(iotdata)
 
   const fetchData = async (date: string) => {
     try {
@@ -26,7 +26,7 @@ const ECommerce:React.FC = () => {
       const result = await response.json();
       setIotData(result);
     } catch (error) {
-      console.error('Error fetching data:', error);
+      // console.error('Error fetching data:', error);
     }
   };
 

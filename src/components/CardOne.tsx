@@ -23,8 +23,8 @@ interface ChartOneProps {
 
 const CardOne: React.FC<ChartOneProps> = ({ data }) => {
   const latestData = data[data.length -1]; // Assuming data is sorted chronologically
-console.log(data);
-console.log(latestData);
+// console.log(data);
+// console.log(latestData);
 
   return (
     <div className="rounded-sm border border-stroke bg-white py-6 px-7.5 shadow-default dark:border-strokedark dark:bg-boxdark">

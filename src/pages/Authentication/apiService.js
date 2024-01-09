@@ -10,7 +10,7 @@ const storeAuthenticationState = (token) => {
 export const checkAuthentication = () => {
   const token = localStorage.getItem('authToken');
   const isAuthenticated = !!token; // Returns true if the token exists
-  console.log('Is Authenticated:', isAuthenticated);
+  // console.log('Is Authenticated:', isAuthenticated);
   return isAuthenticated;
 };
 
@@ -30,13 +30,13 @@ export const signIn = async (email, password) => {
     });
 
     const data = await response.json();
-    console.log(data);
+    // console.log(data);
 
     if (response.ok) {
-      console.log(response);
+      // console.log(response);
       // Handle successful login
       storeAuthenticationState(data.user); // Store the authentication state (e.g., token)
-      console.log('User successfully signed in'); // Add this line
+      // console.log('User successfully signed in'); // Add this line
       
       return data;
     } else {
@@ -53,7 +53,7 @@ export const signIn = async (email, password) => {
 export const signOut = async () => {
   try {
     removeAuthenticationState();
-    console.log('User successfully signed out');
+    // console.log('User successfully signed out');
     // Redirect to sign-in page
     window.location.href = '/auth/signin'; // Adjust the path as needed
   } catch (error) {
