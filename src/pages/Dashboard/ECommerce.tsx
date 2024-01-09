@@ -32,15 +32,12 @@ const ECommerce:React.FC = () => {
 
   const handleDateChange = (newDate: string) => {
     setSelectedDate(newDate);
-  };
-
-  const handleFetchData = () => {
-    fetchData(selectedDate);
+    fetchData(newDate); // Automatically fetch data when the date changes
   };
 
   useEffect(() => {
     // Set a default date when the component mounts
-    const defaultDate = '2022-01-01'; // Replace with your desired default date
+    const defaultDate = '2024-01-08'; // Replace with your desired default date
     setSelectedDate(defaultDate);
 
     // Initial fetch with the default date
@@ -63,7 +60,7 @@ const ECommerce:React.FC = () => {
           value={selectedDate}
           onChange={(e) => handleDateChange(e.target.value)}
         />
-        <button onClick={handleFetchData}>Fetch Data</button>
+        {/* <button onClick={handleFetchData}>Fetch Data</button> */}
       </div>
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
