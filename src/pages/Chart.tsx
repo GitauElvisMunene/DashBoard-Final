@@ -1,7 +1,7 @@
 // src/Chart.tsx
 
 import React, { useState } from 'react';
-
+import ThresholdCard from './UiElements/ThresholdCard';
 interface Thresholds {
   flowVolume: number;
   flowPulse: number;
@@ -25,7 +25,7 @@ const Chart: React.FC = () => {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    height: '100vh',
+    height: '50vh',
     backgroundColor: 'rgba(255, 255, 255, 1)',
     backgroundImage: `url('../../images/icon/new-x.jpg')`,
     backgroundSize: 'cover',
@@ -73,6 +73,13 @@ const Chart: React.FC = () => {
   };
 
   return (
+    <>  {/* Display threshold values in cards */}
+    <h1 style={{ display: 'flex', justifyContent: 'center', marginTop: '20px', color: "black" }}>Monitor and set thresholds for your water usage.</h1>
+    <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
+      <ThresholdCard label="Flow Volume" value={thresholds.flowVolume} />
+      <ThresholdCard label="Flow Pulse" value={thresholds.flowPulse} />
+      <ThresholdCard label="Output Liquid Quantity" value={thresholds.outputLiquidQuantity} />
+    </div>
     <div style={containerStyle}>
       <div style={thresholdsContainerStyle}>
         <h1>Leakage Detection Thresholds</h1>
@@ -113,7 +120,9 @@ const Chart: React.FC = () => {
         </div>
       </div>
     </div>
+    </>
   );
+  
 };
 
 export default Chart;
