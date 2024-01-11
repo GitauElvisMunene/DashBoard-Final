@@ -18,7 +18,7 @@ const ECommerce:React.FC = () => {
   const [iotdata, setIotData] = useState([]);
   const [selectedDate, setSelectedDate] = useState<string>('');
   // console.log(selectedDate) 
-  // console.log(iotdata)
+ 
 
   const fetchData = async (date: string) => {
     try {
@@ -30,26 +30,43 @@ const ECommerce:React.FC = () => {
     }
   };
 
-  const handleDateChange = (newDate: string) => {
-    setSelectedDate(newDate);
-    fetchData(newDate); // Automatically fetch data when the date changes
-  };
+  // const handleDateChange = (newDate: string) => {
+  //   setSelectedDate(newDate);
+  //   fetchData(newDate); // Automatically fetch data when the date changes
+  // };
+
+  // useEffect(() => {
+  //   // Set a default date when the component mounts
+  //   const defaultDate = '2024-01-08'; // Replace with your desired default date
+  //   setSelectedDate(defaultDate);
+
+  //   // Initial fetch with the default date
+  //   fetchData(defaultDate);
+
+  //   // Set up interval to fetch data every, for example, 5 minutes (300,000 milliseconds)
+  //   const intervalId = setInterval(() => fetchData(selectedDate), 300000);
+
+  //   // Clear the interval when the component is unmounted
+  //   return () => clearInterval(intervalId);
+  // }, []); // Empty dependency array ensures this effect runs only once on mount
 
   useEffect(() => {
-    // Set a default date when the component mounts
-    const defaultDate = '2024-01-08'; // Replace with your desired default date
-    setSelectedDate(defaultDate);
-
-    // Initial fetch with the default date
-    fetchData(defaultDate);
-
-    // Set up interval to fetch data every, for example, 5 minutes (300,000 milliseconds)
-    const intervalId = setInterval(() => fetchData(selectedDate), 300000);
-
-    // Clear the interval when the component is unmounted
+    const defaultDate = '2024-01-08';
+    const storedDate = localStorage.getItem('selectedDate');
+    setSelectedDate(storedDate || defaultDate);
+    fetchData(storedDate || defaultDate);
+  
+    const intervalId = setInterval(() => fetchData(selectedDate), 500);
+  
     return () => clearInterval(intervalId);
-  }, []); // Empty dependency array ensures this effect runs only once on mount
-
+  }, [selectedDate]);
+  
+  const handleDateChange = (newDate: string) => {
+    setSelectedDate(newDate);
+    localStorage.setItem('selectedDate', newDate);
+    fetchData(newDate);
+  };
+  
   return (
     <>
 
