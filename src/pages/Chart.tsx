@@ -50,6 +50,7 @@ const Chart: React.FC = () => {
     padding: '8px',
     marginBottom: '15px',
     boxSizing: 'border-box',
+    color: 'blue', // Set the text color for the input fields
   };
 
   const buttonStyle: React.CSSProperties = {
