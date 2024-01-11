@@ -74,7 +74,7 @@ const Chart: React.FC = () => {
 
   return (
     <>  {/* Display threshold values in cards */}
-    <h1 style={{ display: 'flex', justifyContent: 'center', marginTop: '20px', color: "black" }}>Monitor and set thresholds for your water usage.</h1>
+    <h1 style={{ display: 'flex', justifyContent: 'center', marginTop: '20px', color: "blue",fontWeight: 'bold' }}>Monitor and set thresholds for your water usage.</h1>
     <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
       <ThresholdCard label="Flow Volume" value={thresholds.flowVolume} />
       <ThresholdCard label="Flow Pulse" value={thresholds.flowPulse} />
