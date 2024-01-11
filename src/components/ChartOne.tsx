@@ -152,8 +152,7 @@ const ChartOne: React.FC<ChartOneProps> = ({ data }) => {
         },
       },
       min: 0,
-      max: 100,
-      reversed: true,
+      reversed: false,
     },
     series: state.series,
   };
