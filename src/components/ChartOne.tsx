@@ -3,15 +3,14 @@ import { ApexOptions } from 'apexcharts';
 import ReactApexChart from 'react-apexcharts';
 
 interface DataPoint {
-  date: string;
-  time: string;
-  device_data: {
-    flowVolume: number;
-  };
+  _id: string;
+  flowVolume: number;
   flowPulse: number;
-  room: string;
-  site: string;
-  waterDetected: boolean;
+  waterDetected: string;
+  OutputLiquidQuantity: number;
+  site: number;
+  room: number;
+  timestamp: string;
 }
 
 interface ChartOneProps {
@@ -26,7 +25,6 @@ interface ChartOneState {
 }
 
 const ChartOne: React.FC<ChartOneProps> = ({ data }) => {
-
 
   
   
@@ -49,7 +47,7 @@ const ChartOne: React.FC<ChartOneProps> = ({ data }) => {
       position: 'top',
       horizontalAlign: 'left',
     },
-    colors: ['#80CAEE','#3C50E0'],
+    colors: ['#80CAEE', '#3C50E0'],
     chart: {
       fontFamily: 'Satoshi, sans-serif',
       height: 335,
@@ -62,7 +60,6 @@ const ChartOne: React.FC<ChartOneProps> = ({ data }) => {
         left: 0,
         opacity: 0.1,
       },
-  
       toolbar: {
         show: false,
       },
@@ -89,10 +86,6 @@ const ChartOne: React.FC<ChartOneProps> = ({ data }) => {
       width: [2, 2],
       curve: 'straight',
     },
-    // labels: {
-    //   show: false,
-    //   position: "top",
-    // },
     grid: {
       xaxis: {
         lines: {
@@ -125,8 +118,8 @@ const ChartOne: React.FC<ChartOneProps> = ({ data }) => {
     xaxis: {
       type: 'datetime',
       categories: data
-      .sort((a, b) => new Date(`${a.date}T${a.time}Z`) - new Date(`${b.date}T${b.time}Z`))
-      .map((dataPoint) => new Date(`${dataPoint.date}T${dataPoint.time}Z`).toISOString()),
+        .sort((a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime())
+        .map(dataPoint => new Date(dataPoint.timestamp).toISOString()),
       labels: {
         format: 'HH:mm:ss',
       },
@@ -137,16 +130,15 @@ const ChartOne: React.FC<ChartOneProps> = ({ data }) => {
         show: false,
       },
       title: {
-        text: 'Time', // Label for the x-axis
+        text: 'Time',
         style: {
           fontSize: '14px',
-        
         },
       },
     },
     yaxis: {
       title: {
-        text: 'Output Liquid Quantity and Flow Pulse', // Label for the y-axis
+        text: 'Water Consumption (Ltrs)',
         style: {
           fontSize: '14px',
         },
@@ -156,20 +148,14 @@ const ChartOne: React.FC<ChartOneProps> = ({ data }) => {
     },
     series: state.series,
   };
-  
-
 
   useEffect(() => {
     if (data) {
       const updatedSeries: ChartOneState['series'] = [
         {
-          name: 'Liquid Quantity',
-          data: data.map(dataPoint => dataPoint.device_data?.OutputLiquidQuantity || 0),
-        },
-        {
-          name: 'Flow Pulse',
-          data: data.map(dataPoint => dataPoint.device_data?.flowPulse|| 0),
-        },
+          name: 'Water Usage (Ltrs)',
+          data: data.map(dataPoint => dataPoint.OutputLiquidQuantity || 0),
+        }
       ];
 
       setState({
@@ -187,8 +173,7 @@ const ChartOne: React.FC<ChartOneProps> = ({ data }) => {
               <span className="block h-2.5 w-full max-w-2.5 rounded-full bg-primary"></span>
             </span>
             <div className="w-full">
-              <p className="font-semibold text-primary">Site: {data[0]?.device_data?.site}</p>
-              {/* <p className="text-sm font-medium">12.04.2022 - 12.05.2022</p> */}
+              <p className="font-semibold text-primary">Site: {data[0]?.site}</p>
             </div>
           </div>
           <div className="flex min-w-47.5">
@@ -196,37 +181,26 @@ const ChartOne: React.FC<ChartOneProps> = ({ data }) => {
               <span className="block h-2.5 w-full max-w-2.5 rounded-full bg-primary"></span>
             </span>
             <div className="w-full">
-              <p className="font-semibold text-primary">Room: {data[0]?.device_data?.room}</p>
-              {/* <p className="text-sm font-medium">12.04.2022 - 12.05.2022</p> */}
+              <p className="font-semibold text-primary">Room: {data[0]?.room}</p>
             </div>
           </div>
-          
           <div className="flex min-w-47.5">
             <span className="mt-1 mr-2 flex h-4 w-full max-w-4 items-center justify-center rounded-full border border-secondary">
               <span className="block h-2.5 w-full max-w-2.5 rounded-full bg-secondary"></span>
             </span>
             <div className="w-full">
               <p className="font-semibold text-secondary">Output Liquid Quantity</p>
-              {/* <p className="text-sm font-medium">12.04.2022 - 12.05.2022</p> */}
             </div>
           </div>
         </div>
         <div className="flex w-full max-w-45 justify-end">
           <div className="inline-flex items-center rounded-md bg-whiter p-1.5 dark:bg-meta-4">
-          <button className="rounded bg-white py-1 px-3 text-xs font-medium text-black shadow-card hover:bg-white hover:shadow-card dark:bg-boxdark dark:text-white dark:hover:bg-boxdark">
+            <button className="rounded bg-white py-1 px-3 text-xs font-medium text-black shadow-card hover:bg-white hover:shadow-card dark:bg-boxdark dark:text-white dark:hover:bg-boxdark">
               Day
             </button>
-            {/* <button className="rounded py-1 px-3 text-xs font-medium text-black hover:bg-white hover:shadow-card dark:text-white dark:hover:bg-boxdark">
-              Week
-            </button>
-            <button className="rounded py-1 px-3 text-xs font-medium text-black hover:bg-white hover:shadow-card dark:text-white dark:hover:bg-boxdark">
-              Month
-            </button> */}
-            {/* <div>{renderData()}</div> */}
           </div>
         </div>
       </div>
-
       <div>
         <div id="chartOne" className="-ml-5">
           <ReactApexChart

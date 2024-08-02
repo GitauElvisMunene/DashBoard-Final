@@ -17,22 +17,21 @@ interface DataPoint {
   waterDetected: boolean;
 }
 
-interface ChartOneProps {
+interface CardOneProps {
   data: DataPoint[];
 }
 
-const CardOne: React.FC<ChartOneProps> = ({ data }) => {
-  const latestData = data[data.length -1]; // Assuming data is sorted chronologically
-// console.log(data);
-// console.log(latestData);
-
+const CardOne: React.FC<CardOneProps> = ({ data }) => {
+  // Ensure data is not empty and get the latest data point
+  const latestData = data.length > 0 ? data[data.length - 1] : null;
+console.log(latestData)
   return (
     <div className="rounded-sm border border-stroke bg-white py-6 px-7.5 shadow-default dark:border-strokedark dark:bg-boxdark">
-      {latestData && (
+      {latestData ? (
         <div className="mt-4 flex items-end justify-between">
           <div>
             <h4 className="text-title-md font-bold text-black dark:text-white">
-              {latestData.device_data.flowVolume}L/m
+              {latestData.flowVolume} L/m
             </h4>
             <span className="text-sm font-medium">Flow Volume</span>
           </div>
@@ -53,6 +52,10 @@ const CardOne: React.FC<ChartOneProps> = ({ data }) => {
               />
             </svg>
           </span>
+        </div>
+      ) : (
+        <div className="mt-4 flex items-center justify-center text-sm font-medium text-gray-500">
+          No data available
         </div>
       )}
     </div>

@@ -41,7 +41,7 @@ const CardFour: React.FC<ChartFourProps> = ({ data }) => {
         <div className="mt-4 flex items-end justify-between">
           <div>
             <h4 className="text-title-md font-bold text-black dark:text-white">
-            {latestData.device_data.OutputLiquidQuantity} Litres
+            {latestData.OutputLiquidQuantity} Litres
             </h4>
             <span className="text-sm font-medium">Output Liquid Quantity</span>
           </div>

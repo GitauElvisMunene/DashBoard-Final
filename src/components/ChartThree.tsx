@@ -1,9 +1,12 @@
 import { ApexOptions } from 'apexcharts';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactApexChart from 'react-apexcharts';
 
-interface ChartThreeState {
-  series: number[];
+interface DataPoint {
+  flowVolume: number;
+  waterLevel: number;
+  outputLiquidQuantity: number;
+  pulseCount: number;
 }
 
 const options: ApexOptions = {
@@ -16,7 +19,6 @@ const options: ApexOptions = {
     show: true,
     position: 'bottom',
   },
-
   plotOptions: {
     pie: {
       donut: {
@@ -48,12 +50,15 @@ const options: ApexOptions = {
   ],
 };
 
-const ChartThree: React.FC = () => {
-  
-  
-  const [state, setState] = useState<ChartThreeState>({
-    series: [65, 34, 12, 56],
-  });
+const ChartThree: React.FC<{ data: DataPoint }> = ({ data }) => {
+  const [series, setSeries] = useState<number[]>([]);
+
+  useEffect(() => {
+    // Assuming data is being passed down as props
+    if (data) {
+      setSeries([data.flowVolume, data.waterLevel, data.outputLiquidQuantity, data.pulseCount]);
+    }
+  }, [data]);
 
   return (
     <div className="col-span-12 rounded-sm border border-stroke bg-white px-5 pt-7.5 pb-5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:col-span-5">
@@ -99,11 +104,7 @@ const ChartThree: React.FC = () => {
 
       <div className="mb-2">
         <div id="chartThree" className="mx-auto flex justify-center">
-          <ReactApexChart
-            options={options}
-            series={state.series}
-            type="donut"
-          />
+          <ReactApexChart options={options} series={series} type="donut" />
         </div>
       </div>
 
@@ -112,8 +113,8 @@ const ChartThree: React.FC = () => {
           <div className="flex w-full items-center">
             <span className="mr-2 block h-3 w-full max-w-3 rounded-full bg-primary"></span>
             <p className="flex w-full justify-between text-sm font-medium text-black dark:text-white">
-              <span> Flow Volume </span>
-              <span> 65% </span>
+              <span>Flow Volume</span>
+              <span>{series[0]}%</span>
             </p>
           </div>
         </div>
@@ -121,8 +122,8 @@ const ChartThree: React.FC = () => {
           <div className="flex w-full items-center">
             <span className="mr-2 block h-3 w-full max-w-3 rounded-full bg-[#6577F3]"></span>
             <p className="flex w-full justify-between text-sm font-medium text-black dark:text-white">
-              <span> Water Level </span>
-              <span> 34% </span>
+              <span>Water Level</span>
+              <span>{series[1]}%</span>
             </p>
           </div>
         </div>
@@ -130,8 +131,8 @@ const ChartThree: React.FC = () => {
           <div className="flex w-full items-center">
             <span className="mr-2 block h-3 w-full max-w-3 rounded-full bg-[#8FD0EF]"></span>
             <p className="flex w-full justify-between text-sm font-medium text-black dark:text-white">
-              <span> Output Liquid Quantity </span>
-              <span> 45% </span>
+              <span>Output Liquid Quantity</span>
+              <span>{series[2]}%</span>
             </p>
           </div>
         </div>
@@ -139,8 +140,8 @@ const ChartThree: React.FC = () => {
           <div className="flex w-full items-center">
             <span className="mr-2 block h-3 w-full max-w-3 rounded-full bg-[#0FADCF]"></span>
             <p className="flex w-full justify-between text-sm font-medium text-black dark:text-white">
-              <span> Pulse Count </span>
-              <span> 12% </span>
+              <span>Pulse Count</span>
+              <span>{series[3]}%</span>
             </p>
           </div>
         </div>

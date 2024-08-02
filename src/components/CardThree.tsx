@@ -29,7 +29,7 @@ const CardThree: React.FC<ChartThreeProps> = ({ data }) => {
         <div className="mt-4 flex items-end justify-between" key={0}>
           <div>
             <h4 className="text-title-md font-bold text-black dark:text-white">
-            {latestData.device_data.waterDetected.toString()}
+            {latestData.waterDetected.toString()}
               <div className="text-sm font-medium">
               <span className="text-sm font-medium">Water Detected</span>
                

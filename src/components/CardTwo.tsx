@@ -3,17 +3,12 @@ import React from 'react';
 interface DataPoint {
   date: string;
   time: string;
-  device_data: {
-    flowVolume: number;
-    flowPulse: number;
-    room: string;
-    site: string;
-    waterDetected: boolean;
-  };
+  flowVolume: number;
   flowPulse: number;
   room: string;
   site: string;
   waterDetected: boolean;
+  OutputLiquidQuantity: number;
 }
 
 interface ChartTwoProps {
@@ -21,7 +16,7 @@ interface ChartTwoProps {
 }
 
 const CardTwo: React.FC<ChartTwoProps> = ({ data }) => {
-  const latestData = data[data.length -1]; // Assuming data is sorted chronologically
+  const latestData = data[data.length - 1]; // Assuming data is sorted chronologically
 
   return (
     <div className="rounded-sm border border-stroke bg-white py-6 px-7.5 shadow-default dark:border-strokedark dark:bg-boxdark">
@@ -29,7 +24,7 @@ const CardTwo: React.FC<ChartTwoProps> = ({ data }) => {
         <div className="mt-4 flex items-end justify-between">
           <div>
             <h4 className="text-title-md font-bold text-black dark:text-white">
-              {latestData.device_data.flowPulse} flowPulse
+              {latestData.flowPulse} flowPulse
             </h4>
             <span className="text-sm font-medium">Flow Pulse</span>
           </div>
